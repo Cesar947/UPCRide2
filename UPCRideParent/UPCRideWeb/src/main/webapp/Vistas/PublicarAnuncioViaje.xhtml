@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head></h:head>
+    <body>
+
+        <h:form id="PubViaje">
+            <p:growl id="men"/>
+
+            <p:panelGrid id="ViajePanelGrid" columns="2" style="width:100%">
+
+
+                <p:outputLabel value="Codigo del conductor:" for="codigoInputText" />
+                <p:inputText id="codigoInputText" required="true" maxlength="10"
+                             value="#{viajeController.conductor.codigo}" />
+
+                <p:outputLabel value="Descripcion:" for="descripcionInputText" />
+                <p:inputText id="descripcionInputText" required="true" maxlength="120"
+                             value="#{viajeController.viaje.descripcion}" />
+
+                <p:outputLabel value="Punto de partida:" for="partidaInputText" />
+                <p:inputText id="partidaInputText"   required="true" maxlength="60"
+                             value="#{viajeController.viaje.puntoPartida}" />
+
+                <p:outputLabel value="Punto de llegada:" for="llegadaInputText" />
+                <p:inputText id="llegadaInputText"   required="true" maxlength="60"
+                             value="#{viajeController.viaje.puntoDestino}" />
+
+
+                <p:outputLabel value="Hora de partida:" for="partidaHInputText" />
+                <p:inputText id="partidaHInputText" required="true" maxlength="15"
+                             value="#{viajeController.viaje.horaPartida}" />
+
+                <p:outputLabel value="Hora de llegada:" for="llegadaHInputText" />
+                <p:inputText id="llegadaHInputText" required="true" maxlength="15"
+                             value="#{viajeController.viaje.horaLlegada}" />
+
+
+                <p:outputLabel value="Entrada(0)/Salida(1):" for="ESInputText" />
+                <p:inputText id="ESInputText" required="true" maxlength="60"
+                             value="#{viajeController.viaje.entrada_salida}" />
+
+                <p:outputLabel value="Fecha del viaje:" for="fechaInputText" />
+                <p:inputText id="fechaInputText" required="true" maxlength="20"
+                             value="#{viajeController.viaje.fechaViaje}" />
+
+                <p:outputLabel value="Dia:" for="diaInputText" />
+                <p:inputText id="diaInputText" required="true" maxlength="20"
+                             value="#{viajeController.viaje.dia}" />
+
+                <p:outputLabel value="Estado:" for="estadoInputText" />
+                <p:inputText id="estadoInputText" required="true" maxlength="20"
+                             value="#{viajeController.viaje.estado}" />
+
+
+
+                <p:commandButton value="Guardar" icon="ui-icon-disk"
+                                 process="@this :PubViaje:ViajePanelGrid"
+                                 actionListener="#{viajeController.saveViaje()}"
+                                 ajax="false"
+                                 />
+
+
+
+                <p:button outcome="/Vistas/VisualizarViajes.xhtml" value="Viajes" icon="pi pi-star" style="margin-right:20px;">
+                    <f:param name="BotonPubllicacion" value="10" />
+                </p:button>
+
+
+
+            </p:panelGrid>
+
+        </h:form>
+    </body>
+</html>

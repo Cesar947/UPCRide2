@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"   
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Inicio | UPC Ride</title>
+
+        <h:form id="buscarViajeForm">
+            <p:outputLabel value="Punto de Partida" for="puntoPartidaInputText" />
+            <p:inputText id="puntoPartidaInputText" required="true" maxlength="60"
+                         value="#{viajeController.viaje.puntoPartida}" />
+            <br></br>
+
+            <p:outputLabel value="Punto de Destino" for="puntoDestinoInputText" />
+            <p:inputText id="puntoDestinoInputText" required="true" maxlength="60"
+                         value="#{viajeController.viaje.puntoDestino}" />
+
+            <br></br>
+            <p:outputLabel value="Fecha de viaje" for="fechaViajeInputText" />
+            <p:inputText id="fechaViajeInputText" required="true" maxlength="10"
+                         value="#{viajeController.viaje.fechaViaje}" />
+            <br></br>
+
+            <p:outputLabel value="Hora estimada de partida" for="horaPartidaInputText" />
+            <p:inputText id="horaPartidaInputText" required="false" maxlength="10"
+                         value="#{viajeController.viaje.horaPartida}" />
+            <br></br>
+            <p:outputLabel value="Hora estimada de llegada" for="horaLlegadaInputText" />
+            <p:inputText id="horaLlegadaInputText" required="false" maxlength="10"
+                         value="#{viajeController.viaje.horaLlegada}" />
+            <br></br>
+            <h:outputText value="Ida/Retorno" />
+            <p:inputSwitch value="#{viajeController.viaje.entrada_salida}" />
+
+            <p:commandButton value="Encontrar viajes" 
+                             process="@this :buscarViajeForm"                                 
+                             action="#{viajeController.buscarViajes()}"
+                             update="panelGridDatosViaje"
+                             ajax="false"
+                             />
+        </h:form>
+
+    </h:head>
+    <h:body>
+        <p:dataScroller value="#{viajeController.viajes}" var="viajeActual" chunkSize="10">
+            <f:facet name="header">
+                Resultados de la busqueda
+            </f:facet>
+
+            <h:panelGrid id="panelGridViaje" columns="1" style="width:100%" columnClasses="logo,detail">
+
+
+                <h:panelGrid id="panelGridDatosViaje" columns="2" cellpadding="5">
+                    <h:outputText value="Conductor:" />
+                    <h:outputText value="#{viajeActual.conductor.nombres}" style="font-weight: bold"/>
+
+                    <h:outputText value="Fecha de viaje:" />
+                    <h:outputText value="#{viajeActual.fechaViaje}" style="font-weight: bold"/>
+
+                    <h:outputText value="Hora de salida:" />
+                    <h:outputText value="#{viajeActual.horaPartida}" style="font-weight: bold"/>
+
+                    <h:outputText value="Hora de llegada:" />
+                    <h:outputText value="#{viajeActual.horaLlegada}" style="font-weight: bold"/>
+
+                    <h:outputText value="Punto de partida:" />
+                    <h:outputText value="#{viajeActual.puntoPartida}" style="font-weight: bold"/>
+
+                    <h:outputText value="Punto de destino:" />
+                    <h:outputText value="#{viajeActual.puntoDestino}" style="font-weight: bold"/>
+
+                    <h:outputText value="Descripcion:" />
+                    <h:outputText value="#{viajeActual.descripcion}" style="font-weight: bold"/>
+
+                    <h:outputText value="Estado del viaje:" />
+                    <h:outputText value="#{viajeActual.estado}" style="font-weight: bold"/>
+
+                    <h:outputText value="Ingreso a la universidad (0) / Retorno de la universidad (1):" />
+                    <h:outputText value="#{viajeActual.entrada_salida}" style="font-weight: bold"/>
+
+
+                </h:panelGrid>
+
+
+
+            </h:panelGrid>
+
+            <p:separator />
+        </p:dataScroller>
+    </h:body>
+</html>
+

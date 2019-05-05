@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head></h:head>
+    <body>
+        <ui:composition template="/WEB-INF/templates/master.xhtml">
+            <ui:define name="content">
+                <h:form id="perfilForm">
+                    <p:growl id="men"/>
+
+                    <br></br> 
+
+                    <p:dataTable id="usuarioDataTable"
+                                 emptyMessage="No existen usuarios registrados"
+                                 value="#{usuarioController.usuarios}" var="usuarioActual" paginator="true"
+                                 rows="10" selectionMode="single" rowKey="#{usuarioActual.codigo}">
+
+                        <f:facet name="header">
+                            <p:outputLabel value="Usuarios" />
+                        </f:facet>
+
+                        <p:ajax event="rowSelect"
+                                listener="#{usuarioController.selectUsuario}" />
+
+                        <p:column headerText="Codigo">
+                            <p:outputLabel value="#{usuarioActual.codigo}"/>
+                        </p:column>
+
+                        <p:column headerText="Nombre">
+                            <p:outputLabel value="#{usuarioActual.nombres}"/>
+                        </p:column>
+
+                        <p:column headerText="Apellidos">
+                            <p:outputLabel value="#{usuarioActual.apellidos}"/>
+                        </p:column>
+
+                        <p:column headerText="Email">
+                            <p:outputLabel value="#{usuarioActual.email}"/>
+                        </p:column>
+
+                        <p:column headerText="Distrito">
+                            <p:outputLabel value="#{usuarioActual.distrito.nombre}"/>
+                        </p:column>
+
+                        <p:column headerText="FaceookID">
+                            <p:outputLabel value="#{usuarioActual.facebookID}"/>
+                        </p:column>
+
+                        <p:column headerText="Telefono">
+                            <p:outputLabel value="#{usuarioActual.telefono}"/>
+                        </p:column>
+
+                        <p:column headerText="Rol">
+                            <p:outputLabel value="#{usuarioActual.rol}"/>
+                        </p:column>
+
+                        <p:column headerText="LicenciaConducir">
+                            <p:outputLabel value="#{usuarioActual.licenciaConducir}"/>
+                        </p:column>
+
+
+                    </p:dataTable>
+                    <p:button outcome="/Vistas/VisualizarViajes.xhtml" value="Viajes" icon="pi pi-star" style="margin-right:20px;">
+                                    <f:param name="BotonViajes" value="10" />
+                                </p:button>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

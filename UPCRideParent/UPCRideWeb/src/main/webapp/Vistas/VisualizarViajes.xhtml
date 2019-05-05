@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head></h:head>
+    <body>
+        <ui:composition template="/WEB-INF/templates/master.xhtml">
+            <ui:define name="content">
+                <h:form id="ListaViajes">
+                    <p:growl id="men"/>
+
+                    <br></br> 
+
+                    <p:dataTable id="ViajesDataTable"
+                                 emptyMessage="No hay viajes publicados"
+                                 value="#{viajeController.viajes}" var="viajeActual" paginator="true"
+                                 rows="10" selectionMode="single" rowKey="#{viajeActual.codigo}">
+    
+                        <f:facet name="header">
+                            <p:outputLabel value="Viajes" />
+                        </f:facet>
+
+                      <p:ajax event="rowSelect"
+                                listener="#{viajeController.selectViaje}" />
+
+                        <p:column headerText="Codigo">
+                            <p:outputLabel value="#{viajeActual.codigo}"/>
+                        </p:column>
+
+                        <p:column headerText="Conductor">
+                            <p:outputLabel value="#{viajeActual.conductor.codigo}"/>
+                        </p:column>
+
+                        <p:column headerText="Descripcion">
+                            <p:outputLabel value="#{viajeActual.descripcion}"/>
+                        </p:column>
+
+                        <p:column headerText="Punto de Partida">
+                            <p:outputLabel value="#{viajeActual.puntoPartida}"/>
+                        </p:column>
+
+                        <p:column headerText="Punto de destino">
+                            <p:outputLabel value="#{viajeActual.puntoDestino}"/>
+                        </p:column>
+
+                        <p:column headerText="Hora de partida">
+                            <p:outputLabel value="#{viajeActual.horaPartida}"/>
+                        </p:column>
+
+                        <p:column headerText="Hora de llegada">
+                            <p:outputLabel value="#{viajeActual.horaLlegada}"/>
+                        </p:column>
+
+                        <p:column headerText="Entrada(0)/Salida(1)">
+                            <p:outputLabel value="#{viajeActual.entrada_salida}"/>
+                        </p:column>
+
+                        <p:column headerText="Fecha del viaje">
+                            <p:outputLabel value="#{viajeActual.fechaViaje}"/>
+                        </p:column>
+                       
+                        <p:column headerText="Dia">
+                            <p:outputLabel value="#{viajeActual.dia}"/>
+                        </p:column>
+                       
+                        <p:column headerText="Estado">
+                            <p:outputLabel value="#{viajeActual.estado}"/>
+                        </p:column>
+                       
+
+
+                    </p:dataTable>
+                   <p:button outcome="/Vistas/PublicarAnuncioViaje.xhtml" value="Publicar anuncio" icon="pi pi-star" style="margin-right:20px;">
+                                    <f:param name="BotonPublicando" value="10" />
+                                </p:button>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

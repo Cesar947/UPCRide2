@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head></h:head>
+    <body>
+        <ui:composition template="/WEB-INF/templates/master.xhtml">
+            <ui:define name="content">
+                <h:form id="registrarConductorForm">
+                    <p:growl id="men"/>
+                    <h1>Registro de conductores</h1>
+                    <p:panelGrid id="usuarioPanelGrid" columns="2" style="width:100%">
+
+
+                        <p:outputLabel value="Codigo:" for="codigoInputText" />
+                        <p:inputText id="codigoInputText" required="true" maxlength="120"
+                                     value="#{usuarioController.usuario.codigo}"
+                                     placeholder="Ingrese su codigo de UPC"
+                                     />
+
+                        <p:outputLabel value="Email:" for="emailInputText" />
+                        <p:inputText id="emailInputText" required="true" maxlength="120"
+                                     value="#{usuarioController.usuario.email}" />
+
+                        <h:outputLabel value="Contraseña:" />
+                        <p:password id="contraseñaInput" value="#{usuarioController.usuario.contrasena}" feedback="true" maxlength="40"/>
+
+                        <p:outputLabel value="Nombres:" for="nombresInputText" />
+                        <p:inputText id="nombresInputText"  required="true" maxlength="60"
+                                     value="#{usuarioController.usuario.nombres}" 
+                                     />
+
+                        <p:outputLabel value="Apellidos:" for="apellidosInputText" />
+                        <p:inputText id="apellidosInputText" required="true" maxlength="60"
+                                     value="#{usuarioController.usuario.apellidos}" />
+
+                        <p:outputLabel value="Distrito:" for="distritoCombo" />
+                        <p:selectOneMenu id="distritoCombo" required="true" effect="drop"
+                                         value="#{usuarioController.distrito}"
+                                         converter="omnifaces.SelectItemsConverter">
+                            <f:selectItem itemLabel="Seleccione una opcion"
+                                          noSelectionOption="true" itemValue="" />
+                            <f:selectItems value="#{usuarioController.distritos}"
+                                           var="Dis" itemLabel="#{Dis.nombre}" itemValue="#{Dis}" /> 
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Ubicacion:" for="ubicacionInputText" />
+                        <p:inputText id="ubicacionInputText" required="true" maxlength="250"
+                                     value="#{usuarioController.usuario.ubicacion}" />
+
+                        <p:outputLabel value="Facebook:" for="facebookInputText" />
+                        <p:inputText id="facebookInputText" required="true" maxlength="60"
+                                     value="#{usuarioController.usuario.facebookID}" />
+
+
+                        <p:outputLabel value="Telefono:" for="telefonoInputText" />
+                        <p:inputText id="telefonoInputText" required="true" maxlength="25"
+                                     value="#{usuarioController.usuario.telefono}" />
+
+                        <p:outputLabel value="Licencia de conducir:" for="licenciaInputText" />
+                        <p:inputText id="licenciaInputText" required="true" maxlength="20"
+                                     value="#{usuarioController.usuario.licenciaConducir}" />
+            
+                 <h2>Registro de auto</h2>
+              <p:panelGrid id="AutoPanelGrid" columns="2" style="width:100%">
+                   
+
+                        <p:outputLabel value="Placa:" for="placaInputText" />
+                        <p:inputText id="placaInputText" required="true" maxlength="7"
+                                     value="#{usuarioController.auto.placa}" />
+                        
+                        <p:outputLabel value="Poliza de soat:" for="polizaInputText" />
+                        <p:inputText id="polizaInputText" required="true" maxlength="6"
+                                     value="#{usuarioController.auto.polizaSoat}" />
+                        
+                        <p:outputLabel value="Marca:" for="marcaInputText" />
+                        <p:inputText id="marcaInputText" required="true" maxlength="40"
+                                     value="#{usuarioController.auto.marca}" />
+                        
+                        <p:outputLabel value="Modelo:" for="modeloInputText" />
+                        <p:inputText id="modeloInputText" required="true" maxlength="40"
+                                     value="#{usuarioController.auto.modelo}" />
+                        
+                        <p:outputLabel value="Límite de personas:" for="limiteInputText" />
+                        <p:inputText id="limiteInputText" required="true" maxlength="10"
+                                     value="#{usuarioController.auto.limitePersonas}" />
+              
+                       <!-- <p:toolbar>
+                            <f:facet name="right">
+                                
+                                   <p:commandButton value="Guardar auto" icon="ui-icon-disk"
+                                                 process="@this :registrarConductorForm:usuarioPanelGrid:AutoPanelGrid"
+                                                 actionListener=""
+                                                 ajax="false"
+                                                 />
+                                
+                            </f:facet>
+                        </p:toolbar>-->
+             </p:panelGrid>
+                        
+           </p:panelGrid>       
+                        <p:toolbar>
+                            <f:facet name="right">
+                                <p:commandButton value="Guardar" icon="ui-icon-disk"
+                                                 process="@this :registrarConductorForm:usuarioPanelGrid"
+                                                 actionListener="#{usuarioController.saveUsuario()}"
+                                                 ajax="false"
+                                                 />
+
+
+                                <p:button outcome="/Vistas/Perfil.xhtml" value="Mi Perfil" icon="pi pi-star" style="margin-right:20px;">
+                                    <f:param name="perfilBoton" value="10" />
+                                </p:button>
+
+                                
+
+                            </f:facet>
+                        </p:toolbar>
+                  
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

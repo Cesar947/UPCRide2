@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head></h:head>
+    <body>
+        <ui:composition template="/WEB-INF/templates/master.xhtml">
+            <ui:define name="content">
+                <h:form id="ResenaForm">
+                    <p:growl id="men"/>
+
+                    <br></br> 
+
+                    <p:dataTable id="ResenaDataTable"
+                                 emptyMessage="No existen usuarios registrados"
+                                 value="#{resenaController.resenas}" var="resenaActual" paginator="true"
+                                 rows="10" selectionMode="single" rowKey="#{resenaActual.codigo}">
+
+                        <f:facet name="header">
+                            <p:outputLabel value="Resenas" />
+                        </f:facet>
+
+                        <p:ajax event="rowSelect"
+                                listener="#{resenaController.selectResena}" />
+
+                        <p:column headerText="Codigo">
+                            <p:outputLabel value="#{resenaActual.codigo}"/>
+                        </p:column>
+
+                        <p:column headerText="Contenido">
+                            <p:outputLabel value="#{resenaActual.contenido}"/>
+                        </p:column>
+
+                        <p:column headerText="Valoración">
+                            <p:outputLabel value="#{resenaActual.valoracion}"/>
+                        </p:column>
+
+                        <p:column headerText="Cliente">
+                            <p:outputLabel value="#{resenaActual.cliente.codigo}"/>
+                        </p:column>
+
+                        <p:column headerText="Conductor">
+                            <p:outputLabel value="#{resenaActual.conductor.codigo}"/>
+                        </p:column>
+
+
+                    </p:dataTable>
+                    
+                     <p:button outcome="/Vistas/EscribirResena.xhtml" value="Reseñar" icon="pi pi-star" style="margin-right:20px;">
+                                    <f:param name="BotonReseña" value="10" />
+                                </p:button>
+                    <p:button outcome="/Vistas/VisualizarViajes.xhtml" value="Viajes" icon="pi pi-star" style="margin-right:20px;">
+                                    <f:param name="BotonViajes" value="10" />
+                                </p:button>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

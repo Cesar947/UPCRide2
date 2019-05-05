@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head></h:head>
+    <body>
+        <ui:composition template="/WEB-INF/templates/master.xhtml">
+            <ui:define name="content">
+                <h:form id="registrarUsuarioForm">
+                    <p:growl id="men"/>
+
+                    <p:panelGrid id="usuarioPanelGrid" columns="2" style="width:100%">
+
+                        <p:outputLabel value="Rol:" for="rolInputText" />
+                        <p:inputText id="rolInputText" required="true" maxlength="60"
+                                     value="#{usuarioController.usuario.rol}" />
+
+<!-- rendered="#{consultaHorario.checaLunes eq true}" -->
+
+
+                        <!--
+                        <p:outputLabel value="Rol:" for="cmbRol" />
+                        <p:selectOneMenu id="cmbRol" required="true" effect="drop"
+                                         value="#{usuarioController.usuario.rol}"
+                                         converter="omnifaces.SelectItemsConverter">
+                            <f:selectItem itemLabel="Seleccione una opcion"
+                                          noSelectionOption="true" itemValue="" />
+                            <f:selectItems value="#{usuarioController.distritos}"
+                                           var="Dis" itemLabel="#{Dis.nombre}" itemValue="#{Dis}" /> 
+                        </p:selectOneMenu>
+                        -->
+
+
+                        <p:outputLabel value="Codigo:" for="codigoInputText" />
+                        <p:inputText id="codigoInputText" required="true" maxlength="120"
+                                     value="#{usuarioController.usuario.codigo}"
+                                     placeholder="Ingrese su codigo de UPC"
+                                     />
+
+                        <p:outputLabel value="Email:" for="emailInputText" />
+                        <p:inputText id="emailInputText" required="true" maxlength="120"
+                                     value="#{usuarioController.usuario.email}" />
+
+                        <h:outputLabel value="Contraseña:" />
+                        <p:password id="contraseñaInput" value="#{usuarioController.usuario.contrasena}" feedback="true" maxlength="40"/>
+
+                        <p:outputLabel value="Nombres:" for="nombresInputText" />
+                        <p:inputText id="nombresInputText"  required="true" maxlength="60"
+                                     value="#{usuarioController.usuario.nombres}" 
+                                     />
+
+                        <p:outputLabel value="Apellidos:" for="apellidosInputText" />
+                        <p:inputText id="apellidosInputText" required="true" maxlength="60"
+                                     value="#{usuarioController.usuario.apellidos}" />
+
+                        <p:outputLabel value="Distrito:" for="distritoCombo" />
+                        <p:selectOneMenu id="distritoCombo" required="true" effect="drop"
+                                         value="#{usuarioController.distrito}"
+                                         converter="omnifaces.SelectItemsConverter">
+                            <f:selectItem itemLabel="Seleccione una opcion"
+                                          noSelectionOption="true" itemValue="" />
+                            <f:selectItems value="#{usuarioController.distritos}"
+                                           var="Dis" itemLabel="#{Dis.nombre}" itemValue="#{Dis}" /> 
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Ubicacion:" for="ubicacionInputText" />
+                        <p:inputText id="ubicacionInputText" required="true" maxlength="15"
+                                     value="#{usuarioController.usuario.ubicacion}" />
+
+                        <p:outputLabel value="Facebook:" for="facebookInputText" />
+                        <p:inputText id="facebookInputText" required="true" maxlength="15"
+                                     value="#{usuarioController.usuario.facebookID}" />
+
+
+                        <p:outputLabel value="Telefono:" for="telefonoInputText" />
+                        <p:inputText id="telefonoInputText" required="true" maxlength="60"
+                                     value="#{usuarioController.usuario.telefono}" />
+
+                        <p:outputLabel value="Licencia de conducir:" for="licenciaInputText" />
+                        <p:inputText id="licenciaInputText" required="true" maxlength="20"
+                                     value="#{usuarioController.usuario.licenciaConducir}" />
+
+
+                        <p:toolbar>
+                            <f:facet name="right">
+                                <p:commandButton value="Guardar" icon="ui-icon-disk"
+                                                 process="@this :registrarUsuarioForm:usuarioPanelGrid"
+                                                 actionListener="#{usuarioController.saveUsuario()}"
+                                                 ajax="false"
+                                                 />
+
+
+                                <p:button outcome="/Vistas/Perfil.xhtml" value="Mi Perfil" icon="pi pi-star" style="margin-right:20px;">
+                                    <f:param name="perfilBoton" value="10" />
+                                </p:button>
+
+                                <!--- <p:button outcome="/protected/usuarios.xhtml" value="Ir a la lista de usuarios" icon="ui-icon-disk" style="margin-right:25px;">
+                                </p:button>
+                                -->
+
+                            </f:facet>
+                        </p:toolbar>
+                    </p:panelGrid>
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

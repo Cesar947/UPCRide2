@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head></h:head>
+    <body>
+        <ui:composition template="/WEB-INF/templates/master.xhtml">
+            <ui:define name="content">
+                <h:form id="EscribirResena">
+                    <p:growl id="men"/>
+
+                    <p:panelGrid id="ResenaPanelGrid" columns="4" style="width:100%">
+
+
+                        <p:outputLabel value="Escribe tu resena:" for="resenaInputText" />
+                        <p:inputText id="resenaInputText" required="true" maxlength="120"
+                                     value="#{resenaController.resena.contenido}" />
+
+                        <p:outputLabel value="Dejanos tu valoración:" for="valoraciónInputText" />
+                        <p:inputText id="valoraciónInputText" required="true" maxlength="15"
+                                     value="#{resenaController.resena.valoracion}" />
+
+
+                        <p:outputLabel value="Cliente:" for="clienteInputText" />
+                        <p:inputText id="clienteInputText" required="true" maxlength="10"
+                                     value="#{resenaController.cliente.codigo}" />
+
+                        <p:outputLabel value="Conductor:" for="conductorInputText" />
+                        <p:inputText id="conductorInputText" required="true" maxlength="10"
+                                     value="#{resenaController.conductor.codigo}" />
+    </p:panelGrid>
+
+                        <p:toolbar>
+                            <f:facet name="right">
+                                <p:commandButton value="Guardar" icon="ui-icon-disk"
+                                                 process="@this:EscribirResena:ResenaPanelGrid"
+                                                 actionListener="#{resenaController.saveResena()}"
+                                                  ajax="false"/>
+
+
+                                <p:button outcome="/Vistas/VisualizarResenas.xhtml" value="Visualizar reseñas" icon="pi pi-star" style="margin-right:20px;">
+                                    <f:param name="perfilBoton" value="10" />
+                                </p:button>
+
+
+                            </f:facet>
+                        </p:toolbar>
+                
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

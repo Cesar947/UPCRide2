@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Roles</title>
+
+    </h:head>
+    <body>
+        
+        <p>Escoge el rol que desempeñarás en nuestra aplicación</p>
+         <h:form id="RolForm">
+             <h:panelGrid columns="2" id="RolPanelGrid">
+                 
+                 <p:outputLabel value="Si solo quieres recibir servicios de colectivo" for="BotonPasajero" />
+                 <p:button id="BotonPasajero" outcome="/Vistas/RegistroPasajero.xhtml" value="Conviertete en pasajero" icon="pi pi-star" style="margin-right:20px;">
+                    <f:param name="registrarPasajeroBoton" value="10" />
+                </p:button>
+                 
+                <p:outputLabel value="Si quieres brindar servicio de colectivo y a la vez adquirirlos" for="BotonConductor" />
+                <p:button id="BotonConductor" outcome="/Vistas/RegistroConductor.xhtml" value="Conviertete en conductor" icon="pi pi-star" style="margin-right:20px;">
+                    <f:param name="registrarConductorBoton" value="10" />
+                </p:button>
+                 
+                 
+             </h:panelGrid>
+         </h:form>
+    </body>
+</html>
