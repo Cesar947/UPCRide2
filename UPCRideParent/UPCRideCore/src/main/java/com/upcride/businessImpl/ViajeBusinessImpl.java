@@ -60,4 +60,9 @@ public class ViajeBusinessImpl implements ViajeBusiness, Serializable{
     public List<Viaje>buscarViajes(Viaje viajeFiltro) throws Exception{
         return viajeRepository.buscarViajes(viajeFiltro);
     }
+    
+    @Override
+    public Viaje findPorId(int id) throws Exception{
+        return viajeRepository.findPorId(id);
+    }
 }

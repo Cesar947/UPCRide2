@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface ViajeBusiness extends CRUDbusiness<Viaje>{
     List<Viaje> buscarViajes(Viaje viajeFiltro) throws Exception;
+    Viaje findPorId(int id) throws Exception;
 }

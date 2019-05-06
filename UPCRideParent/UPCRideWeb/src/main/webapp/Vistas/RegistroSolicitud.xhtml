@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+
+        <title>Solicitar | UPC Ride</title>
+
+    </h:head>
+
+    <h:body>
+        <ui:composition template="/WEB-INF/templates/master.xhtml">
+            <ui:define name="content">
+                <h:form id="RegistroSolicitud">
+                    <p:growl id="men"/>
+
+                    <p:panelGrid id="SolicitudPanelGrid" columns="4" style="width:100%">
+
+
+                        <p:outputLabel value="Codigo:" for="mensajeInputText" />
+                        <p:inputText id="clienteInputText" required="true" maxlength="10"
+                                     value="#{solicitudController.cliente.codigo}" />
+                        
+                        <p:outputLabel value="Escribe tu solicitud:" for="mensajeInputText" />
+                        <p:inputText id="mensajeInputText" required="true" maxlength="250"
+                                     value="#{solicitudController.solicitud.mensaje}"
+                                     placeholder="Añada un mensaje a la solicitud"/>
+
+                        <p:outputLabel value="Punto de Encuentro:" for="pntEncuentroInputText" />
+                        <p:inputText id="pntEncuentroInputText" required="true" maxlength="120"
+                                     value="#{solicitudController.solicitud.puntoRecojo}"
+                                     placeholder="Punto de encuentro"/>
+                    </p:panelGrid>
+
+                    <p:toolbar>
+                        <f:facet name="right">
+                            <p:commandButton value="Solicitar" icon="ui-icon-disk"
+                                             process="@this:RegistroSolicitud:SolicitudPanelGrid"
+                                             actionListener="#{solicitudController.saveSolicitud()}"
+                                             ajax="false"/>
+
+
+                            <p:button outcome="/Vistas/VisualizarSolicitudes.xhtml" value="Visualizar reseñas" icon="pi pi-star" style="margin-right:20px;">
+                                <f:param name="perfilBoton" value="10" />
+                            </p:button>
+
+
+                        </f:facet>
+                    </p:toolbar>
+
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

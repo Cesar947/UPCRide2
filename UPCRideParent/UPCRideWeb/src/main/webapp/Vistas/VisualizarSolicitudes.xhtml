@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head></h:head>
+    <body>
+        <ui:composition template="/WEB-INF/templates/master.xhtml">
+            <ui:define name="content">
+                <h:form id="SolicitudForm">
+                    <p:growl id="men"/>
+
+                    <br></br> 
+
+                    <p:dataTable id="SolicitudDataTable"
+                                 emptyMessage="No existen solicitudes"
+                                 value="#{solicitudController.solicitudes}" var="solicitudActual" paginator="true"
+                                 rows="10" selectionMode="single" rowKey="#{solicitudActual.codigoSolicitud}">
+
+                        <f:facet name="header">
+                            <p:outputLabel value="Solicitudes" />
+                        </f:facet>
+
+                        <p:ajax event="rowSelect"
+                                listener="#{solicitudController.selectSolicitud}" />
+
+                        <p:column headerText="Codigo">
+                            <p:outputLabel value="#{solicitudActual.codigoSolicitud}"/>
+                        </p:column>
+
+                        <p:column headerText="Mensaje">
+                            <p:outputLabel value="#{solicitudActual.puntoRecojo}"/>
+                        </p:column>
+
+                        <p:column headerText="Confirmacion Conductor">
+                            <p:outputLabel value="#{solicitudActual.confirmacionConductor}"/>
+                        </p:column>
+
+                        <p:column headerText="CConfirmacion Pasajero">
+                            <p:outputLabel value="#{solicitudActual.confirmacionCliente}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                    
+                     <p:button outcome="/Vistas/EscribirResena.xhtml" value="Reseñar" icon="pi pi-star" style="margin-right:20px;">
+                                    <f:param name="BotonReseña" value="10" />
+                                </p:button>
+                    <p:button outcome="/Vistas/VisualizarViajes.xhtml" value="Viajes" icon="pi pi-star" style="margin-right:20px;">
+                                    <f:param name="BotonViajes" value="10" />
+                                </p:button>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

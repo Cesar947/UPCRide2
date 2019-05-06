@@ -51,41 +51,43 @@
             </f:facet>
 
             <h:panelGrid id="panelGridViaje" columns="1" style="width:100%" columnClasses="logo,detail">
+                <h:form>
+                    <h:panelGrid id="panelGridDatosViaje" columns="2" cellpadding="5">
+                        <h:outputText value="Conductor:" />
+                        <h:outputText value="#{viajeActual.conductor.nombres}" style="font-weight: bold"/>
 
+                        <h:outputText value="Fecha de viaje:" />
+                        <h:outputText value="#{viajeActual.fechaViaje}" style="font-weight: bold"/>
 
-                <h:panelGrid id="panelGridDatosViaje" columns="2" cellpadding="5">
-                    <h:outputText value="Conductor:" />
-                    <h:outputText value="#{viajeActual.conductor.nombres}" style="font-weight: bold"/>
+                        <h:outputText value="Hora de salida:" />
+                        <h:outputText value="#{viajeActual.horaPartida}" style="font-weight: bold"/>
 
-                    <h:outputText value="Fecha de viaje:" />
-                    <h:outputText value="#{viajeActual.fechaViaje}" style="font-weight: bold"/>
+                        <h:outputText value="Hora de llegada:" />
+                        <h:outputText value="#{viajeActual.horaLlegada}" style="font-weight: bold"/>
 
-                    <h:outputText value="Hora de salida:" />
-                    <h:outputText value="#{viajeActual.horaPartida}" style="font-weight: bold"/>
+                        <h:outputText value="Punto de partida:" />
+                        <h:outputText value="#{viajeActual.puntoPartida}" style="font-weight: bold"/>
 
-                    <h:outputText value="Hora de llegada:" />
-                    <h:outputText value="#{viajeActual.horaLlegada}" style="font-weight: bold"/>
+                        <h:outputText value="Punto de destino:" />
+                        <h:outputText value="#{viajeActual.puntoDestino}" style="font-weight: bold"/>
 
-                    <h:outputText value="Punto de partida:" />
-                    <h:outputText value="#{viajeActual.puntoPartida}" style="font-weight: bold"/>
+                        <h:outputText value="Descripcion:" />
+                        <h:outputText value="#{viajeActual.descripcion}" style="font-weight: bold"/>
 
-                    <h:outputText value="Punto de destino:" />
-                    <h:outputText value="#{viajeActual.puntoDestino}" style="font-weight: bold"/>
+                        <h:outputText value="Estado del viaje:" />
+                        <h:outputText value="#{viajeActual.estado}" style="font-weight: bold"/>
 
-                    <h:outputText value="Descripcion:" />
-                    <h:outputText value="#{viajeActual.descripcion}" style="font-weight: bold"/>
+                        <h:outputText value="Ingreso a la universidad (0) / Retorno de la universidad (1):" />
+                        <h:outputText value="#{viajeActual.entrada_salida}" style="font-weight: bold"/>
 
-                    <h:outputText value="Estado del viaje:" />
-                    <h:outputText value="#{viajeActual.estado}" style="font-weight: bold"/>
+                        <p:commandButton value="Solicitar" icon="ui-icon-disk"
+                                         process="@this : panelGridDatosViaje"
+                                         action="#{solicitudController.createSolicitud(viajeActual.codigo)}"
+                                         ajax="false"
+                                         />
 
-                    <h:outputText value="Ingreso a la universidad (0) / Retorno de la universidad (1):" />
-                    <h:outputText value="#{viajeActual.entrada_salida}" style="font-weight: bold"/>
-
-
-                </h:panelGrid>
-
-
-
+                    </h:panelGrid>
+                </h:form>
             </h:panelGrid>
 
             <p:separator />

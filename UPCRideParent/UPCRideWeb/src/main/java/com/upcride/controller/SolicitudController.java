@@ -11,16 +11,22 @@ import com.upcride.business.ViajeBusiness;
 import com.upcride.entity.Solicitud;
 import com.upcride.entity.Usuario;
 import com.upcride.entity.Viaje;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 
 /**
  *
  * @author sebas
  */
-public class SolicitudController {
+
+@Named
+@ViewScoped
+public class SolicitudController implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +39,7 @@ public class SolicitudController {
 
     private Usuario cliente;
     private List<Usuario> clientes;
-    
+
     private Viaje viaje;
     private List<Viaje> viajes;
 
@@ -77,16 +83,30 @@ public class SolicitudController {
 
     public void saveSolicitud() {
         try {
-
+            solicitud.setConfirmacionConductor(0);
+            solicitud.setConfirmacionCliente(0);
             solicitud.setCliente(cliente);
-            solicitud.setViaje(viaje);
             solicitudBusiness.insert(solicitud);
 
             loadSolicitudes();
             cleanForm();
+
         } catch (Exception e) {
 
         }
+
+    }
+    
+    public String createSolicitud(int id) throws Exception{
+        String resultado = ""; 
+        try{
+        this.viaje = viajeBusiness.findPorId(id);
+        solicitud.setViaje(viaje);
+        resultado = "Vistas/RegistroSolicitud.xhtml";
+        }
+        catch(Exception ex){
+        }
+        return resultado;
     }
 
     public void editSolicitud() {
@@ -179,7 +199,5 @@ public class SolicitudController {
     public void setSolicitudes(List<Solicitud> solicitudes) {
         this.solicitudes = solicitudes;
     }
-    
-    
 
 }

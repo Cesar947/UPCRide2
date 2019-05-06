@@ -15,5 +15,5 @@ import java.util.List;
 
 public interface ViajeRepository extends JPArepository<Viaje>{
     List<Viaje> buscarViajes(Viaje viajeFiltro) throws Exception;
-    
+    Viaje findPorId(int id) throws Exception;
 }
