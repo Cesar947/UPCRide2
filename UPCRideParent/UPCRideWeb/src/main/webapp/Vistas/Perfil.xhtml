@@ -5,70 +5,84 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
-    <h:head></h:head>
-    <body>
-        <ui:composition template="/WEB-INF/templates/master.xhtml">
-            <ui:define name="content">
-                <h:form id="perfilForm">
-                    <p:growl id="men"/>
+    <h:head>
+        <meta http-equiv="Expires" content="0"/>
+        <meta http-equiv="Last-Modified" content="0"/>
+        <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <!-- Pepino esta wea es para que no le afecte el cache-->
+        <h:outputStylesheet library="css" name="homeStyleSheet.css" />
+        <title>Mi Perfil | UPC Ride</title>
+    </h:head>
+    <h:body>
+        <header>
+            <h:graphicImage id="logo" library="images" name="navBar.jpg"/>
+            <p:panel id="navbar"  >
+                <li><h:link  outcome="/Vistas/Home.xhtml">Home</h:link></li>
+                <li><h:link  outcome="/Vistas/PublicarAnuncioViaje.xhtml">Anunciar</h:link></li>
+                <li><h:link  outcome="/Vistas/Perfil.xhtml">Mi Perfil</h:link></li>
+                <li><h:link  outcome="/Vistas/ElegirRol.xhtml">Registrarse</h:link></li>
+                <li><h:link  outcome="/Vistas/InicioSesion.xhtml">Login</h:link></li>       
+            </p:panel>        
+        </header>
+        <h:form id="perfilForm">
+            <p:growl id="men"/>
 
-                    <br></br> 
+            <br></br> 
 
-                    <p:dataTable id="usuarioDataTable"
-                                 emptyMessage="No existen usuarios registrados"
-                                 value="#{usuarioController.usuarios}" var="usuarioActual" paginator="true"
-                                 rows="10" selectionMode="single" rowKey="#{usuarioActual.codigo}">
+            <p:dataTable id="usuarioDataTable"
+                         emptyMessage="No existen usuarios registrados"
+                         value="#{usuarioController.usuarios}" var="usuarioActual" paginator="true"
+                         rows="10" selectionMode="single" rowKey="#{usuarioActual.codigo}">
 
-                        <f:facet name="header">
-                            <p:outputLabel value="Usuarios" />
-                        </f:facet>
+                <f:facet name="header">
+                    <p:outputLabel value="Usuarios" />
+                </f:facet>
 
-                        <p:ajax event="rowSelect"
-                                listener="#{usuarioController.selectUsuario}" />
+                <p:ajax event="rowSelect"
+                        listener="#{usuarioController.selectUsuario}" />
 
-                        <p:column headerText="Codigo">
-                            <p:outputLabel value="#{usuarioActual.codigo}"/>
-                        </p:column>
+                <p:column headerText="Codigo">
+                    <p:outputLabel value="#{usuarioActual.codigo}"/>
+                </p:column>
 
-                        <p:column headerText="Nombre">
-                            <p:outputLabel value="#{usuarioActual.nombres}"/>
-                        </p:column>
+                <p:column headerText="Nombre">
+                    <p:outputLabel value="#{usuarioActual.nombres}"/>
+                </p:column>
 
-                        <p:column headerText="Apellidos">
-                            <p:outputLabel value="#{usuarioActual.apellidos}"/>
-                        </p:column>
+                <p:column headerText="Apellidos">
+                    <p:outputLabel value="#{usuarioActual.apellidos}"/>
+                </p:column>
 
-                        <p:column headerText="Email">
-                            <p:outputLabel value="#{usuarioActual.email}"/>
-                        </p:column>
+                <p:column headerText="Email">
+                    <p:outputLabel value="#{usuarioActual.email}"/>
+                </p:column>
 
-                        <p:column headerText="Distrito">
-                            <p:outputLabel value="#{usuarioActual.distrito.nombre}"/>
-                        </p:column>
+                <p:column headerText="Distrito">
+                    <p:outputLabel value="#{usuarioActual.distrito.nombre}"/>
+                </p:column>
 
-                        <p:column headerText="FaceookID">
-                            <p:outputLabel value="#{usuarioActual.facebookID}"/>
-                        </p:column>
+                <p:column headerText="FaceookID">
+                    <p:outputLabel value="#{usuarioActual.facebookID}"/>
+                </p:column>
 
-                        <p:column headerText="Telefono">
-                            <p:outputLabel value="#{usuarioActual.telefono}"/>
-                        </p:column>
+                <p:column headerText="Telefono">
+                    <p:outputLabel value="#{usuarioActual.telefono}"/>
+                </p:column>
 
-                        <p:column headerText="Rol">
-                            <p:outputLabel value="#{usuarioActual.rol}"/>
-                        </p:column>
+                <p:column headerText="Rol">
+                    <p:outputLabel value="#{usuarioActual.rol}"/>
+                </p:column>
 
-                        <p:column headerText="LicenciaConducir">
-                            <p:outputLabel value="#{usuarioActual.licenciaConducir}"/>
-                        </p:column>
+                <p:column headerText="LicenciaConducir">
+                    <p:outputLabel value="#{usuarioActual.licenciaConducir}"/>
+                </p:column>
 
 
-                    </p:dataTable>
-                    <p:button outcome="/Vistas/VisualizarViajes.xhtml" value="Viajes" icon="pi pi-star" style="margin-right:20px;">
-                                    <f:param name="BotonViajes" value="10" />
-                                </p:button>
-                </h:form>
-            </ui:define>
-        </ui:composition>
-    </body>
+            </p:dataTable>
+            <p:button outcome="/Vistas/Home.xhtml" value="Home" icon="pi pi-star" style="margin-right:20px;">
+                <f:param name="BotonViajes" value="10" />
+            </p:button>
+        </h:form>
+    </h:body>
 </html>

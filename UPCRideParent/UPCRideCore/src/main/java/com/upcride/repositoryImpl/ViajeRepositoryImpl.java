@@ -64,20 +64,22 @@ public class ViajeRepositoryImpl implements ViajeRepository, Serializable {
     @SuppressWarnings("unchecked")
     @Override
     public Viaje findPorId(int id) throws Exception{
-        List<Viaje> viajes = new ArrayList<>();
-        Query q = em.createQuery("SELECT v FROM Viaje v where v.codigoViaje = ?1");
-        q.setParameter(1, id);
         
-        viajes = (List<Viaje>) q.getResultList();
+        /*Query q = em.createQuery("SELECT v " + " FROM Viaje v" + "where v.codigo = 5");
+        q.setParameter(1, id)*/
+       
+        /*Viaje viaje = (Viaje) q.getSingleResult();*/
         
-        return viajes != null && !viajes.isEmpty() ? viajes.get(0) : new Viaje();
+       
+        
+        return  em.find(Viaje.class, id);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public Viaje findById(Viaje v) throws Exception {
         List<Viaje> viajes = new ArrayList<>();
-        Query q = em.createQuery("SELECT v FROM Viaje v where v.codigoViaje = ?1");
+        Query q = em.createQuery("SELECT v FROM Viaje v where v.codigo = ?1");
         q.setParameter(1, v.getCodigo());
 
         viajes = (List<Viaje>) q.getResultList();

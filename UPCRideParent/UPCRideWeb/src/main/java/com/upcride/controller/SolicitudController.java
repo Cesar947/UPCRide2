@@ -100,8 +100,8 @@ public class SolicitudController implements Serializable{
     public String createSolicitud(int id) throws Exception{
         String resultado = ""; 
         try{
-        this.viaje = viajeBusiness.findPorId(id);
-        solicitud.setViaje(viaje);
+        /*this.viaje = viajeBusiness.findPorId(id);
+        solicitud.setViaje(viaje);*/
         resultado = "Vistas/RegistroSolicitud.xhtml";
         }
         catch(Exception ex){

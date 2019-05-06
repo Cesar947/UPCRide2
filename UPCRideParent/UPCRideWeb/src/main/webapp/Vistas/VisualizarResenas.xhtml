@@ -5,7 +5,9 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
-    <h:head></h:head>
+    <h:head>
+        
+    </h:head>
     <body>
         <ui:composition template="/WEB-INF/templates/master.xhtml">
             <ui:define name="content">
@@ -34,7 +36,7 @@
                             <p:outputLabel value="#{resenaActual.contenido}"/>
                         </p:column>
 
-                        <p:column headerText="Valoración">
+                        <p:column headerText="ValoraciÃ³n">
                             <p:outputLabel value="#{resenaActual.valoracion}"/>
                         </p:column>
 
@@ -49,8 +51,8 @@
 
                     </p:dataTable>
                     
-                     <p:button outcome="/Vistas/EscribirResena.xhtml" value="Reseñar" icon="pi pi-star" style="margin-right:20px;">
-                                    <f:param name="BotonReseña" value="10" />
+                     <p:button outcome="/Vistas/EscribirResena.xhtml" value="ReseÃ±ar" icon="pi pi-star" style="margin-right:20px;">
+                                    <f:param name="BotonReseÃ±a" value="10" />
                                 </p:button>
                     <p:button outcome="/Vistas/VisualizarViajes.xhtml" value="Viajes" icon="pi pi-star" style="margin-right:20px;">
                                     <f:param name="BotonViajes" value="10" />

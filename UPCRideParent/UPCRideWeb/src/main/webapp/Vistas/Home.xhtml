@@ -6,92 +6,133 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
+        <!-- Pepino esta wea es para que no le afecte el cache-->
+        <meta http-equiv="Expires" content="0"/>
+        <meta http-equiv="Last-Modified" content="0"/>
+        <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <!-- Pepino esta wea es para que no le afecte el cache-->
+        <h:outputStylesheet library="css" name="homeStyleSheet.css" />
         <title>Inicio | UPC Ride</title>
-
-        <h:form id="buscarViajeForm">
-            <p:outputLabel value="Punto de Partida" for="puntoPartidaInputText" />
-            <p:inputText id="puntoPartidaInputText" required="true" maxlength="60"
-                         value="#{viajeController.viaje.puntoPartida}" />
-            <br></br>
-
-            <p:outputLabel value="Punto de Destino" for="puntoDestinoInputText" />
-            <p:inputText id="puntoDestinoInputText" required="true" maxlength="60"
-                         value="#{viajeController.viaje.puntoDestino}" />
-
-            <br></br>
-            <p:outputLabel value="Fecha de viaje" for="fechaViajeInputText" />
-            <p:inputText id="fechaViajeInputText" required="true" maxlength="10"
-                         value="#{viajeController.viaje.fechaViaje}" />
-            <br></br>
-
-            <p:outputLabel value="Hora estimada de partida" for="horaPartidaInputText" />
-            <p:inputText id="horaPartidaInputText" required="false" maxlength="10"
-                         value="#{viajeController.viaje.horaPartida}" />
-            <br></br>
-            <p:outputLabel value="Hora estimada de llegada" for="horaLlegadaInputText" />
-            <p:inputText id="horaLlegadaInputText" required="false" maxlength="10"
-                         value="#{viajeController.viaje.horaLlegada}" />
-            <br></br>
-            <h:outputText value="Ida/Retorno" />
-            <p:inputSwitch value="#{viajeController.viaje.entrada_salida}" />
-
-            <p:commandButton value="Encontrar viajes" 
-                             process="@this :buscarViajeForm"                                 
-                             action="#{viajeController.buscarViajes()}"
-                             update="panelGridDatosViaje"
-                             ajax="false"
-                             />
-        </h:form>
-
     </h:head>
     <h:body>
-        <p:dataScroller value="#{viajeController.viajes}" var="viajeActual" chunkSize="10">
-            <f:facet name="header">
-                Resultados de la busqueda
-            </f:facet>
+        <header>
+            <h:graphicImage id="logo" library="images" name="navBar.jpg"/>
+            <p:panel id="navbar"  >
+                <li><h:link  outcome="/Vistas/Home.xhtml">Home</h:link></li>
+                <li><h:link  outcome="/Vistas/PublicarAnuncioViaje.xhtml">Anunciar</h:link></li>
+                <li><h:link  outcome="/Vistas/Perfil.xhtml">Mi Perfil</h:link></li>
+                <li><h:link  outcome="/Vistas/ElegirRol.xhtml">Registrarse</h:link></li>
+                <li><h:link  outcome="/Vistas/InicioSesion.xhtml">Login</h:link></li> 
+            </p:panel>        
+        </header>
+        <div id="entrada">
+            <h:form class ="panel" id="buscarViajesForm">
 
-            <h:panelGrid id="panelGridViaje" columns="1" style="width:100%" columnClasses="logo,detail">
+                <p:panelGrid  class="buscarViajesPanelGrid transparentBackground" id="buscarViajesPanelGrid" columns="2">
+                    <p:outputLabel  value="Punto de Partida" for="puntoPartidaInputText"  />
+
+                    <p:outputLabel value="Punto de Destino" for="puntoDestinoInputText" />
+
+
+                    <p:inputText  id="puntoDestinoInputText" required="true" maxlength="10"
+                                  value="#{viajeController.viaje.puntoDestino}" 
+                                  immediate="true"/>
+                    <p:inputText id="puntoPartidaInputText" required="true" maxlength="10"
+                                 immediate="true"
+                                 value="#{viajeController.viaje.puntoPartida}" />
+
+
+                    <p:outputLabel value="Fecha de viaje" for="fechaViajeInputText" />
+
+                    <p:outputLabel value="Hora estimada de partida" for="horaPartidaInputText" />
+
+
+                    <p:inputText id="horaPartidaInputText" required="false" maxlength="10"
+                                 value="#{viajeController.viaje.horaPartida}" />
+                    <p:inputText id="fechaViajeInputText" required="true" maxlength="10"
+                                 value="#{viajeController.viaje.fechaViaje}" />
+                    <p:outputLabel value="Hora estimada de llegada" for="horaLlegadaInputText" />            
+                    <h:outputText value="Ida/Retorno" />
+
+
+                    <p:inputText id="horaLlegadaInputText" required="false" maxlength="10"
+                                 value="#{viajeController.viaje.horaLlegada}" />
+                    <p:inputSwitch value="#{viajeController.viaje.entrada_salida}" />
+
+                </p:panelGrid>
+                <br></br>
+                <br></br>
+                <p:commandButton class="boton" id="botonEncontrarViajes" value="Encontrar viajes" 
+                                 process="@this"  
+                                 actionListener="#{viajeController.buscarViajes()}"
+                                 ajax ="false"
+                                 immediate ="true"
+                                 />
+
+
+
+                <br></br>
+            </h:form>
+            <br></br>
+            <br></br>
+        </div>
+        <div>
+            <p:dataScroller value="#{viajeController.viajes}" var="viajeActual" chunkSize="10">
+                <f:facet name="header"   >
+                    Resultados de la busqueda
+                </f:facet>
                 <h:form>
-                    <h:panelGrid id="panelGridDatosViaje" columns="2" cellpadding="5">
-                        <h:outputText value="Conductor:" />
-                        <h:outputText value="#{viajeActual.conductor.nombres}" style="font-weight: bold"/>
+                    <h:panelGrid columns="1" style="width:100%" columnClasses="logo,detail">
 
-                        <h:outputText value="Fecha de viaje:" />
-                        <h:outputText value="#{viajeActual.fechaViaje}" style="font-weight: bold"/>
 
-                        <h:outputText value="Hora de salida:" />
-                        <h:outputText value="#{viajeActual.horaPartida}" style="font-weight: bold"/>
+                        <h:panelGrid  columns="2" cellpadding="5">
+                            <h:outputText value="Conductor:" />
+                            <h:outputText value="#{viajeActual.conductor.nombres}" style="font-weight: bold"/>
 
-                        <h:outputText value="Hora de llegada:" />
-                        <h:outputText value="#{viajeActual.horaLlegada}" style="font-weight: bold"/>
+                            <h:outputText value="Fecha de viaje:" />
+                            <h:outputText value="#{viajeActual.fechaViaje}" style="font-weight: bold"/>
 
-                        <h:outputText value="Punto de partida:" />
-                        <h:outputText value="#{viajeActual.puntoPartida}" style="font-weight: bold"/>
+                            <h:outputText value="Hora de salida:" />
+                            <h:outputText value="#{viajeActual.horaPartida}" style="font-weight: bold"/>
 
-                        <h:outputText value="Punto de destino:" />
-                        <h:outputText value="#{viajeActual.puntoDestino}" style="font-weight: bold"/>
+                            <h:outputText value="Hora de llegada:" />
+                            <h:outputText value="#{viajeActual.horaLlegada}" style="font-weight: bold"/>
 
-                        <h:outputText value="Descripcion:" />
-                        <h:outputText value="#{viajeActual.descripcion}" style="font-weight: bold"/>
+                            <h:outputText value="Punto de partida:" />
+                            <h:outputText value="#{viajeActual.puntoPartida}" style="font-weight: bold"/>
 
-                        <h:outputText value="Estado del viaje:" />
-                        <h:outputText value="#{viajeActual.estado}" style="font-weight: bold"/>
+                            <h:outputText value="Punto de destino:" />
+                            <h:outputText value="#{viajeActual.puntoDestino}" style="font-weight: bold"/>
 
-                        <h:outputText value="Ingreso a la universidad (0) / Retorno de la universidad (1):" />
-                        <h:outputText value="#{viajeActual.entrada_salida}" style="font-weight: bold"/>
+                            <h:outputText value="Descripcion:" />
+                            <h:outputText value="#{viajeActual.descripcion}" style="font-weight: bold"/>
 
-                        <p:commandButton value="Solicitar" icon="ui-icon-disk"
-                                         process="@this : panelGridDatosViaje"
-                                         action="#{solicitudController.createSolicitud(viajeActual.codigo)}"
-                                         ajax="false"
-                                         />
+                            <h:outputText value="Estado del viaje:" />
+                            <h:outputText value="#{viajeActual.estado}" style="font-weight: bold"/>
+
+                            <h:outputText value="Ingreso a la universidad (0) / Retorno de la universidad (1):" />
+                            <h:outputText value="#{viajeActual.entrada_salida}" style="font-weight: bold"/>
+
+
+                            <p:button outcome="/Vistas/RegistroSolicitud.xhtml" value="Solicitar" icon="pi pi-star" style="margin-right:20px;">
+                                <f:param name="solicitarBoton" value="10" />
+                            </p:button>
+
+                            <!--<p:commandButton value="Solicitar" icon="ui-icon-key"
+                                             process="@this"                                 
+                                             action="Vistas/RegistroSolicitud.xhtml"
+                                             />-->
+
+                        </h:panelGrid>
+
+
 
                     </h:panelGrid>
                 </h:form>
-            </h:panelGrid>
-
-            <p:separator />
-        </p:dataScroller>
+                <p:separator />
+            </p:dataScroller>
+        </div>
     </h:body>
 </html>
 

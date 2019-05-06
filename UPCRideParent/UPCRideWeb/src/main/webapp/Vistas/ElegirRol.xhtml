@@ -7,12 +7,21 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
-        <title>Roles</title>
+        <meta http-equiv="Expires" content="0"/>
+        <meta http-equiv="Last-Modified" content="0"/>
+        <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <!-- Pepino esta wea es para que no le afecte el cache-->
+        <h:outputStylesheet library="css" name="homeStyleSheet.css" />
+        <title>Registro | UPC Ride</title>
 
     </h:head>
-    <body>
+    <h:body>
+         <header>
+            <h:graphicImage id="logo" library="images" name="navBar.jpg"/>    
+        </header>
         
-        <p>Escoge el rol que desempeñarás en nuestra aplicación</p>
+        <p>Escoge el rol que desempeÃ±arÃ¡s en nuestra aplicaciÃ³n</p>
          <h:form id="RolForm">
              <h:panelGrid columns="2" id="RolPanelGrid">
                  
@@ -29,5 +38,5 @@
                  
              </h:panelGrid>
          </h:form>
-    </body>
+    </h:body>
 </html>

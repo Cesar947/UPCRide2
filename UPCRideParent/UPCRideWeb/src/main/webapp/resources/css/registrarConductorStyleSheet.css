@@ -1,0 +1,133 @@
+@font-face
+{
+    font-family: Segoe;
+    src :  url("../resources/font/Segoe UI Bold.ttf");
+        
+}
+@font-face
+{
+    font-family: Akka;
+    src : url(../resources/font/akka.TTF);
+        
+}
+#fomularioAuto
+{
+    position: absolute;
+    top:auto;
+    top:30%;
+    right: 15%;
+}
+
+#botones
+{
+   position: absolute;
+    top:85%;
+    right:20%;
+}
+#RegistroAuto{
+    
+}
+
+.segoe
+{
+    font-family: Segoe;
+}
+.Akka
+{
+    font-family: Akka;
+}
+
+#barranavegacion
+{
+    background-image: url(../resources/images/navBar.jpg);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+.panel
+{
+ background: transparent;
+ background-color: transparent;
+ position: relative;
+ left: 35%   
+}
+
+#buscarViajesPanelGrid
+{
+    background-color: transparent;
+    position: relative;
+    left: 30%
+}
+#formularioUsuario{
+    position: absolute;
+    left: 10%;
+    top:30%;
+}
+
+
+body
+{
+    background-image: url(http://sfwallpaper.com/images/web-backgrounds-9.jpg);
+    background-repeat: repeat-y;
+    background-size:  100%;
+    border: none;
+    margin:0;
+    padding: 0;
+}
+
+#logo
+{
+    position: relative;
+    width: 100%;
+
+    margin: 0px 0px 0px 0px;
+     
+}
+.txtform
+{
+    position: relative;
+    background: yellow;
+}
+.cuadro{
+    background: transparent;
+}
+label
+{
+    background-color: transparent;
+}
+form{
+    background-color: transparent;
+}
+
+.noBorder tr,
+    .noBorder td { border: 0 !important; }
+
+.transparentBackground tr,
+.transparentBackground td { background: transparent !important; }
+
+.panelGrid td {
+    border: none;
+}
+
+.companyHeaderGrid.ui-panelgrid>*>tr,
+.companyHeaderGrid.ui-panelgrid>*>tr>td {
+    border: none;
+    background-color: transparent;
+}
+
+.izquierda{
+    float: left;
+}
+
+.derecha
+{
+    float: right;
+}
+
+.tamanoboton
+{
+    width: 150px;
+    height: 50px;
+}
+
+
